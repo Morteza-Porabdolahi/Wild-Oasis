@@ -10,7 +10,7 @@ import FormRow from "../../ui/FormRow";
 import { useCreateCabin } from "./useCreateCabin";
 import { useEditCabin } from "./useEditCabin";
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onClose }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = !!editId;
 
@@ -27,24 +27,30 @@ function CreateCabinForm({ cabinToEdit = {} }) {
       const image = typeof data.image === 'string' || data.image === null ? data.image : data.image[0];
 
       editCabin({ newCabinData: { ...data, image }, id: editId }, {
-        onSuccess: () => reset({
-          name: '',
-          maxCapacity: '',
-          regularPrice: '',
-          discount: 0,
-          description: '',
-          image: '',
-        }),
+        onSuccess: () => {
+          reset({
+            name: '',
+            maxCapacity: '',
+            regularPrice: '',
+            discount: 0,
+            description: '',
+            image: '',
+          })
+          onClose?.();
+        },
       })
     } else {
       createCabin({ ...data, image: data.image[0] }, {
-        onSuccess: () => reset(),
+        onSuccess: () => {
+          reset();
+          onClose?.();
+        },
       });
     }
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)} type={onClose ? 'modal' : 'regular'}>
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input disabled={isWorking} type="text" id="name" {...register("name", {
           required: "This field is required"
@@ -92,7 +98,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button onClick={() => onClose?.()} variation="secondary" type="reset">
           Cancel
         </Button>
         <Button disabled={isWorking}>{isEditSession ? 'Edit cabin' : 'Create new cabin'}</Button>
