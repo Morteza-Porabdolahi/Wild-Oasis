@@ -40,6 +40,7 @@ const Filter = ({ fieldName, options = [] }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   
   function handleClick(value) {
+    searchParams.set('page', 1);
     searchParams.set(fieldName, value);
     setSearchParams(searchParams);
   }
