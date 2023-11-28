@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useThemeContext } from "../context/ThemeContext";
 
 const StyledLogo = styled.div`
   text-align: center;
@@ -10,9 +11,11 @@ const Img = styled.img`
 `;
 
 function Logo() {
+  const { isDarkMode } = useThemeContext();
+  
   return (
     <StyledLogo>
-      <Img src="/logo-light.png" alt="Logo" />
+      <Img src={!isDarkMode ? "/logo-light.png" : "/logo-dark.png"} alt="Logo" />
     </StyledLogo>
   );
 }

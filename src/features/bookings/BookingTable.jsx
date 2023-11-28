@@ -10,11 +10,11 @@ import Pagination from "../../ui/Pagination";
 function BookingTable() {
   const [isLoading, error, data] = useBookings();
 
-  if(isLoading) return <Spinner />
+  if (isLoading) return <Spinner />
 
   const { data: bookings, count } = data;
-  
-  if(bookings.length <= 0) return <Empty resourceName="Bookings" />
+
+  if (bookings.length <= 0) return <Empty resourceName="Bookings" />
 
   return (
     <>
@@ -31,13 +31,13 @@ function BookingTable() {
         <Table.Body
           data={bookings}
           render={(booking) => (
-          <Menus key={booking.id}>
-            <BookingRow booking={booking} />
-          </Menus>
+            <Menus key={booking.id}>
+              <BookingRow booking={booking} />
+            </Menus>
           )}
         />
         <Table.Footer>
-          <Pagination resultsLength={count}/>
+          <Pagination resultsLength={count} />
         </Table.Footer>
       </Table>
     </>
