@@ -4,6 +4,10 @@ import styled from "styled-components";
 import { HiOutlineCog6Tooth, HiOutlineHome, HiOutlineHomeModern, HiOutlineUsers } from "react-icons/hi2";
 import { HiOutlineCalendarDays } from "react-icons/hi2";
 
+const Nav = styled.nav`
+overflow: auto;
+`
+
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -51,7 +55,7 @@ const StyledNavLink = styled(NavLink)`
 
 const MainNav = () => {
   return (
-    <nav>
+    <Nav>
       <NavList>
         <li>
           <StyledNavLink to="/dashboard">
@@ -95,7 +99,7 @@ const MainNav = () => {
         </li>
       </NavList>
       
-    </nav>
+    </Nav>
   )
 }
 

@@ -12,6 +12,14 @@ const StyledStat = styled.div`
   grid-template-rows: auto auto;
   column-gap: 1.6rem;
   row-gap: 0.4rem;
+
+  @media only screen and (max-width: 1260px) {
+    grid-column: span 2;
+  }
+
+  @media only screen and (max-width: 840px) {
+    grid-column: span 4;
+  }
 `;
 
 const Icon = styled.div`

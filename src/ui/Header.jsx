@@ -10,6 +10,10 @@ display: flex;
 gap: 2.4rem;
 align-items: center;
 justify-content: flex-end;
+
+@media only screen and (max-width: 480px) {
+  padding: 1.2rem 2rem;
+}
 `
 const Header = () => {
   return (

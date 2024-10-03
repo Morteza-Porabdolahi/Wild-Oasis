@@ -2,6 +2,9 @@ import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 import Table from '../../ui/Table';
 
+import ScrolledContainer from "../../ui/ScrolledContainer";
+import OverflowedContainer from "../../ui/OverflowedContainer";
+
 import { useCabins } from "./useCabins";
 import Menus from "../../ui/Menus";
 
@@ -33,19 +36,23 @@ const CabinTable = () => {
 
   return (
     <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
-      <Table.Header>
-        <div></div>
-        <div>Cabin</div>
-        <div>Capacity</div>
-        <div>Price</div>
-        <div>Discount</div>
-        <div></div>
-      </Table.Header>
-      <Table.Body data={sortedCabins} render={cabin => (
-        <Menus key={cabin.id}>
-          <CabinRow cabin={cabin} />
-        </Menus>
-      )} />
+      <ScrolledContainer>
+        <OverflowedContainer width="83rem">
+          <Table.Header>
+            <div></div>
+            <div>Cabin</div>
+            <div>Capacity</div>
+            <div>Price</div>
+            <div>Discount</div>
+            <div></div>
+          </Table.Header>
+          <Table.Body data={sortedCabins} render={cabin => (
+            <Menus key={cabin.id}>
+              <CabinRow cabin={cabin} />
+            </Menus>
+          )} />
+        </OverflowedContainer>
+      </ScrolledContainer>
     </Table>
   )
 }

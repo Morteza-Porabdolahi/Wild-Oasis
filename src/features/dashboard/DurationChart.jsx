@@ -19,6 +19,10 @@ const ChartBox = styled.div`
   & .recharts-pie-label-text {
     font-weight: 600;
   }
+
+  @media only screen and (max-width: 1340px) {
+    grid-column: span 4;
+  }
 `;
 
 const startDataLight = [
@@ -143,14 +147,14 @@ export const DurationChart = ({ confirmedStays }) => {
     <ChartBox>
       <Heading as="h2">Stay duration summary</Heading>
       <ResponsiveContainer height={300} width="100%">
-        <PieChart>
-          <Pie innerRadius={90} cx='40%' cy="50%" paddingAngle={3} outerRadius={110} nameKey="duration" dataKey="value" data={data}>
+        <PieChart width={100} height={100}>
+          <Pie innerRadius={90} cx='50%' cy="50%" paddingAngle={3} outerRadius={110} nameKey="duration" dataKey="value" data={data}>
             {
               data.map(entry => <Cell fill={entry.color} stroke={entry.color} key={entry.duration}/>)
             }
           </Pie >
           <Tooltip />
-          <Legend verticalAlign="middle" align="right" width="30%" layout="vertical" iconSize={15} iconType="circle"/>
+          <Legend verticalAlign="middle" align="center" width="30%" layout="vertical" iconSize={15} iconType="circle"/>
         </PieChart>
       </ResponsiveContainer>
     </ChartBox>
