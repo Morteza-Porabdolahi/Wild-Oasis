@@ -30,8 +30,23 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-align: center;
+
+  @media only screen and (max-width: 400px) { 
+    padding: 1.6rem 2.6rem;
+  }
+
+  @media only screen and (max-width: 638px) {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
 
   svg {
+
+    @media only screen and (max-width: 314px) {
+      display: none;
+    }
+
     height: 3.2rem;
     width: 3.2rem;
   }
@@ -53,6 +68,10 @@ const Header = styled.header`
 
 const Section = styled.section`
   padding: 3.2rem 4rem 1.2rem;
+  
+  @media only screen and (max-width: 446px) {
+    padding: 2.4rem 2rem;
+  }
 `;
 
 const Guest = styled.div`
@@ -61,6 +80,10 @@ const Guest = styled.div`
   gap: 1.2rem;
   margin-bottom: 1.6rem;
   color: var(--color-grey-500);
+  
+  @media only screen and (max-width: 600px) {
+  flex-direction: column;
+  }
 
   & p:first-of-type {
     font-weight: 500;
@@ -75,6 +98,10 @@ const Price = styled.div`
   padding: 1.6rem 3.2rem;
   border-radius: var(--border-radius-sm);
   margin-top: 2.4rem;
+
+  @media only screen and (max-width: 540px) {
+    flex-direction: column;
+  }
 
   background-color: ${(props) =>
     props.isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
@@ -100,6 +127,12 @@ const Footer = styled.footer`
   color: var(--color-grey-500);
   text-align: right;
 `;
+
+const DetailBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+`
 
 // A purely presentational component
 function BookingDataBox({ booking }) {
@@ -140,14 +173,20 @@ function BookingDataBox({ booking }) {
 
       <Section>
         <Guest>
-          {countryFlag && <Flag src={countryFlag} alt={`Flag of ${country}`} />}
-          <p>
-            {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ""}
-          </p>
-          <span>&bull;</span>
-          <p>{email}</p>
-          <span>&bull;</span>
-          <p>National ID {nationalID}</p>
+          <DetailBox>
+            {countryFlag && <Flag src={countryFlag} alt={`Flag of ${country}`} />}
+            <p>
+              {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ""}
+            </p>
+          </DetailBox>
+          <DetailBox>
+            <span>&bull;</span>
+            <p>{email}</p>
+          </DetailBox>
+          <DetailBox>
+            <span>&bull;</span>
+            <p>National ID {nationalID}</p>
+          </DetailBox>
         </Guest>
 
         {observations && (
