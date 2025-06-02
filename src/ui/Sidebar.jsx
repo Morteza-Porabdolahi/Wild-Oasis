@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
+import Uploader from "../data/Uploader";
 
 import Logo from './Logo';
 import MainNav from './MainNav';
@@ -56,6 +57,7 @@ const Sidebar = () => {
       </HamburgerIcon>
       <Logo />
       <MainNav />
+      <Uploader />
     </StyledSidebar>
   )
 }
